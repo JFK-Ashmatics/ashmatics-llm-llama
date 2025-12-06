@@ -55,7 +55,9 @@ run-local: build-llama-local
 	# --mlock: Lock model in memory to prevent swapping (improves stability on Mac)
 	# -cb: Continuous batching (improves throughput)
 	# -c 2048: Context window size
-	./llama.cpp/build/bin/llama-server -m $(MODEL_PATH) --port 11434 --n-gpu-layers 99 --mlock -cb -c 2048 & \
+	# --embeddings: Enable embeddings endpoint for /v1/embeddings
+	# --pooling mean: Use mean pooling for OpenAI-compatible embeddings
+	./llama.cpp/build/bin/llama-server -m $(MODEL_PATH) --port 11434 --n-gpu-layers 99 --mlock -cb -c 2048 --embeddings --pooling mean & \
 	PID_LLAMA=$$!; \
 	trap "kill $$PID_LLAMA" EXIT; \
 	sleep 2; \

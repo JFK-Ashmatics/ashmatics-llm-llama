@@ -21,6 +21,8 @@ fi
 
 echo "Starting llama-server..."
 # Start llama-server in the background
+# --embeddings: Enable embeddings endpoint for /v1/embeddings
+# --pooling mean: Use mean pooling for OpenAI-compatible embeddings
 $LLAMA_BIN \
   -m "$MODEL_PATH" \
   --alias "$MODEL_ALIAS" \
@@ -28,6 +30,8 @@ $LLAMA_BIN \
   --ctx-size "$CONTEXT" \
   --n-gpu-layers "$N_GPU_LAYERS" \
   --threads "$THREADS" \
+  --embeddings \
+  --pooling mean \
   --host 0.0.0.0 &
 
 # Wait until llama-server is ready

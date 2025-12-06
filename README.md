@@ -66,7 +66,10 @@ The FastAPI wrapper is available at `http://localhost:9000`.
 - `GET /health`: Health check.
 - `POST /generate`: Generate text (proxies to llama.cpp).
 - `POST /v1/chat/completions`: OpenAI-compatible chat endpoint.
+- `POST /v1/embeddings`: OpenAI-compatible embeddings endpoint.
 - `GET /v1/models`: List available models.
+
+**Note**: Embeddings are enabled by default via the `--embeddings` flag passed to llama-server.
 
 ---
 
