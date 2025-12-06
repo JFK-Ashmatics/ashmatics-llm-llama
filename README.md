@@ -109,21 +109,21 @@ This will:
 ### Example Output
 
 ```
-🔌 Connecting to MCP Server at: /path/to/ashmatics-tools
-🛠️  Found 3 tools: ['search_devices', 'search_drugs', 'count_by_field']
+Connecting to MCP Server at: /path/to/ashmatics-tools
+Found 3 tools: ['search_devices', 'search_drugs', 'count_by_field']
 
-👤 User: Find 510(k) clearances for product code QIH from 2020 onwards.
+User: Find 510(k) clearances for product code QIH from 2020 onwards.
 
 --- Iteration 1 ---
-🤖 LLM Response: {"tool": "search_devices", "args": {"query": "product_code:QIH AND decision_date:[20200101 TO *]"...
-🔧 Detected tool call: search_devices(...)
-✅ Tool returned 3 results
+LLM Response: {"tool": "search_devices", "args": {"query": "product_code:QIH AND decision_date:[20200101 TO *]"...
+Detected tool call: search_devices(...)
+Tool returned 3 results
 
 --- Iteration 2 ---
-✨ Final Answer: The search returned 3 510(k) clearances...
+Final Answer: The search returned 3 510(k) clearances...
 
 ============================================================
-✅ Chat loop completed successfully!
+Chat loop completed successfully!
 ============================================================
 ```
 
