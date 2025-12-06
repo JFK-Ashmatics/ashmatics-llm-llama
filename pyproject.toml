@@ -1,5 +1,5 @@
 [project]
-name = "ashmatics-llm-llamacpp"
+name = "ashmatics-llm-llama"
 version = "0.2.0"
 description = "FastAPI wrapper for llama.cpp"
 requires-python = ">=3.11"
