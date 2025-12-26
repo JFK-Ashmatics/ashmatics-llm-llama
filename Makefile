@@ -5,7 +5,7 @@ IMAGE_NAME = llama-wrapper
 CONTAINER_NAME = llama-wrapper-instance
 # Default model path (can be overridden via command line: make run-local MODEL_PATH=models/other-model.gguf)
 # For split models, point to the first file (e.g., ...-00001-of-00002.gguf)
-MODEL_PATH ?= models/qwen2.5-7b-instruct-q5_k_m-00001-of-00002.gguf
+MODEL_PATH ?= llama.cpp/models/qwen2.5-3b-instruct-q4_k_m.gguf
 
 # Qwen 2.5 7B Instruct (Q5_K_M) - High quality, fits on M1
 # Note: This model is split into multiple files on HuggingFace.
@@ -37,11 +37,13 @@ build-llama-local:
 	# Disable BLAS (Accelerate) to avoid vecLib conflicts on newer macOS SDKs
 	# Force C++17 standard
 	# Explicitly disable Accelerate framework usage
+	# Workaround for Xcode CLT 26.x missing C++ headers in expected location
 	cd llama.cpp && cmake -B build \
 		-DGGML_METAL=ON \
 		-DGGML_BLAS=OFF \
 		-DGGML_ACCELERATE=OFF \
 		-DCMAKE_CXX_STANDARD=17 \
+		-DCMAKE_CXX_FLAGS="-I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1" \
 		-DLLAMA_BUILD_TESTS=OFF \
 		-DLLAMA_BUILD_EXAMPLES=OFF \
 		-DLLAMA_BUILD_SERVER=ON \
